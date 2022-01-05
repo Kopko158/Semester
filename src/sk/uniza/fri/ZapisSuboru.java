@@ -25,7 +25,7 @@ public class ZapisSuboru {
         try {
 
             if (this.statistiky.createNewFile()) {
-                System.out.println("Subor bol vytvorena: " + this.statistiky.getName());
+                System.out.println("Subor bol vytvorený: " + this.statistiky.getName());
             } else {
                 System.out.println("Subor: " + this.statistiky.getName() + " už existuje.");
             }

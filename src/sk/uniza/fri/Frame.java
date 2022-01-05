@@ -342,7 +342,7 @@ public class Frame extends JFrame implements ActionListener {
         for (int x = 0; x < 9; x++) {
             this.tlacitka[x].setEnabled(true);
             this.tlacitka[x].setText("");
-            this.tlacitka[x].setBackground(Color.white);
+            this.tlacitka[x].setBackground(Color.LIGHT_GRAY);
         }
         this.textfield.setText("");
     }

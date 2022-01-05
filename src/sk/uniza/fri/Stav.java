@@ -8,17 +8,17 @@ package sk.uniza.fri;
 
 
 public enum Stav {
-    PRAZDNE(""),
-    XOVE("X"),
-    OCKOVE("O");
+    PRAZDNE(' '),
+    XOVE('X'),
+    OCKOVE('O');
 
-    private String znak;
+    private char znak;
 
-    Stav (String znak) {
+    Stav (char znak) {
         this.znak = znak;
     }
 
-    public String getZnak() {
+    public char getZnak() {
         return this.znak;
     }
 }

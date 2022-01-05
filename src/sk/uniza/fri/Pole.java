@@ -75,12 +75,16 @@ public class Pole {
         int stlpec = krok[1];
 
         this.hraciaPlocha[riadok][stlpec] = znak;
+        this.poslednyPohyb = znak;
 
-        if (riadok != znak && stlpec != znak ) {
-            this.poslednyPohyb = znak;
-        }
-        this.hraciaPlocha[riadok][stlpec] = znak;
-        System.out.println("Chybné políčko skús ešte raz");
+    }
+
+    public boolean overObsadenie(int[] krok) {
+
+        int riadok = krok[0];
+        int stlpec = krok[1];
+        return this.hraciaPlocha[riadok][stlpec] != 'O' && this.hraciaPlocha[riadok][stlpec] != 'X';
+
     }
 
     public void krokPC(char znak) {
