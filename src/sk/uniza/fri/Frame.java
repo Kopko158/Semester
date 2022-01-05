@@ -16,7 +16,6 @@ import java.awt.Font;
 //import java.util.Timer;
 //import java.util.TimerTask;
 
-
 import static java.awt.BorderLayout.NORTH;
 
 /**
@@ -30,7 +29,6 @@ public class Frame extends JFrame implements ActionListener {
     private JFrame frame = new JFrame();
 
     private JPanel title = new JPanel();
-    private JPanel tlacitkovy = new JPanel();
     private JPanel footer = new JPanel();
 
     private JLabel textfield = new JLabel();
@@ -49,8 +47,11 @@ public class Frame extends JFrame implements ActionListener {
     // private Stav xove = Stav.XOVE;
     // private Stav ockove = Stav.OCKOVE;
 
-    Frame() {
 
+    /***
+     *
+     */
+    Frame() {
         this.frame.setTitle("PiskvorkyGrafika");
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setSize(500, 500);
@@ -67,18 +68,20 @@ public class Frame extends JFrame implements ActionListener {
         this.textfield.setBackground(Color.blue);
         this.textfield.setForeground(Color.white);
         this.textfield.setHorizontalAlignment(JLabel.CENTER);
+        this.textfield.setFont(new Font(Font.SERIF, Font.BOLD, 30));
         this.textfield.setText("Hru spustíš kliknutím na políčko");
         this.textfield.setOpaque(true);
 
-        this.tlacitkovy.setLayout(new GridLayout(3, 3));
-        this.tlacitkovy.setBackground(new Color(150, 150, 25));
+        JPanel tlacitkovy = new JPanel();
+        tlacitkovy.setLayout(new GridLayout(3, 3));
+        tlacitkovy.setBackground(new Color(150, 150, 25));
 
         this.reset.setText("RESETOVANIE");
         this.reset.addActionListener(this);
 
         for (int i = 0; i < 9; i++) {
             this.tlacitka[i] = new JButton();
-            this.tlacitkovy.add(this.tlacitka[i]);
+            tlacitkovy.add(this.tlacitka[i]);
             this.tlacitka[i].setFocusable(false);
             this.tlacitka[i].addActionListener(this);
         }
@@ -86,7 +89,7 @@ public class Frame extends JFrame implements ActionListener {
         this.title.add(this.textfield);
 
         this.frame.add(this.title, NORTH);
-        this.frame.add(this.tlacitkovy);
+        this.frame.add(tlacitkovy);
         this.frame.add(this.footer, BorderLayout.SOUTH);
 
         this.footer.add(this.reset, BorderLayout.CENTER);
@@ -94,6 +97,9 @@ public class Frame extends JFrame implements ActionListener {
         this.prvyTah();
     }
 
+    /***
+     *
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -111,7 +117,7 @@ public class Frame extends JFrame implements ActionListener {
                         this.tlacitka[i].setText("X");
                         this.hrac1Pohyb = false;//
                         this.textfield.setText("O tah");
-                        if (!this.kontrola()) {
+                        if (this.kontrolaX() && this.kontrolaO()) {
                             this.kontrolaRemizy();
                         }
                     }
@@ -122,7 +128,7 @@ public class Frame extends JFrame implements ActionListener {
                         this.tlacitka[i].setText("O");
                         this.hrac1Pohyb = true;
                         this.textfield.setText("X tah");//
-                        if (!this.kontrola()) {
+                        if (this.kontrolaX() && this.kontrolaO()) {
                             this.kontrolaRemizy();
                         }
                     }
@@ -142,7 +148,10 @@ public class Frame extends JFrame implements ActionListener {
         }
     }
 
-    public boolean kontrola() {
+    /***
+     *
+     */
+    public boolean kontrolaX() {
         //X
         if (
                 (this.tlacitka[0].getText().equals("X")) &&
@@ -150,7 +159,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[2].getText().equals("X"))
         ) {
             this.vyhraX(0, 1, 2);
-            return true;
+            return false;
         }
 
         if (
@@ -159,7 +168,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[5].getText().equals("X"))
         ) {
             this.vyhraX(3, 4, 5);
-            return true;
+            return false;
         }
 
         if (
@@ -168,7 +177,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[8].getText().equals("X"))
         ) {
             this.vyhraX(6, 7, 8);
-            return true;
+            return false;
         }
 
         if (
@@ -177,7 +186,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[6].getText().equals("X"))
         ) {
             this.vyhraX(0, 3, 6);
-            return true;
+            return false;
         }
 
         if (
@@ -186,7 +195,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[7].getText().equals("X"))
         ) {
             this.vyhraX(1, 4, 7);
-            return true;
+            return false;
         }
 
         if (
@@ -195,7 +204,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[8].getText().equals("X"))
         ) {
             this.vyhraX(2, 5, 8);
-            return true;
+            return false;
         }
 
         if (
@@ -204,7 +213,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[8].getText().equals("X"))
         ) {
             this.vyhraX(0, 4, 8);
-            return true;
+            return false;
         }
 
         if (
@@ -213,10 +222,16 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[6].getText().equals("X"))
         ) {
             this.vyhraX(2, 4, 6);
-            return true;
-
+            return false;
         }
 
+        return true;
+    }
+
+    /***
+     *
+     */
+    public boolean kontrolaO() {
         //O
         if (
                 (this.tlacitka[0].getText().equals("O")) &&
@@ -224,7 +239,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[2].getText().equals("O"))
         ) {
             this.vyhraO(0, 1, 2);
-            return true;
+            return false;
         }
 
         if (
@@ -233,7 +248,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[5].getText().equals("O"))
         ) {
             this.vyhraO(3, 4, 5);
-            return true;
+            return false;
         }
 
         if (
@@ -242,7 +257,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[8].getText().equals("O"))
         ) {
             this.vyhraO(6, 7, 8);
-            return true;
+            return false;
         }
 
         if (
@@ -251,7 +266,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[6].getText().equals("O"))
         ) {
             this.vyhraO(0, 3, 6);
-            return true;
+            return false;
         }
 
         if (
@@ -260,7 +275,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[7].getText().equals("O"))
         ) {
             this.vyhraO(1, 4, 7);
-            return true;
+            return false;
         }
 
         if (
@@ -269,7 +284,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[8].getText().equals("O"))
         ) {
             this.vyhraO(2, 5, 8);
-            return true;
+            return false;
         }
 
         if (
@@ -278,7 +293,7 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[8].getText().equals("O"))
         ) {
             this.vyhraO(0, 4, 8);
-            return true;
+            return false;
         }
 
         if (
@@ -287,11 +302,15 @@ public class Frame extends JFrame implements ActionListener {
                         (this.tlacitka[6].getText().equals("O"))
         ) {
             this.vyhraO(2, 4, 6);
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
+
+    /***
+     *
+     */
     public void kontrolaRemizy() {
         int plnePolicko = 0;
         for (int x = 0; x < 9; x++) {
@@ -304,6 +323,9 @@ public class Frame extends JFrame implements ActionListener {
         }
     }
 
+    /***
+     *
+     */
     public void vyhraX(int a, int b, int c) {
         this.vyhral = 5;
         this.tlacitka[a].setBackground(Color.green);
@@ -316,6 +338,9 @@ public class Frame extends JFrame implements ActionListener {
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
+    /***
+     *
+     */
     public void vyhraO(int a, int b, int c) {
         this.vyhral = 10;
         this.tlacitka[a].setBackground(Color.red);
@@ -328,6 +353,9 @@ public class Frame extends JFrame implements ActionListener {
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
+    /***
+     *
+     */
     public void remiza() {
         this.vyhral = 15;
         for (int x = 0; x < 9; x++) {
@@ -338,11 +366,14 @@ public class Frame extends JFrame implements ActionListener {
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
+    /***
+     *
+     */
     public void reset() {
         for (int x = 0; x < 9; x++) {
             this.tlacitka[x].setEnabled(true);
             this.tlacitka[x].setText("");
-            this.tlacitka[x].setBackground(Color.LIGHT_GRAY);
+            this.tlacitka[x].setBackground(Color.white);
         }
         this.textfield.setText("");
     }

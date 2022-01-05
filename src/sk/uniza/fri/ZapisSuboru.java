@@ -39,16 +39,12 @@ public class ZapisSuboru {
      */
     public void zapisStatistiku(int vyhral) {
         switch (vyhral) {
-            case 5:
-                this.x++;
-                break;
-            case 10:
-                this.y++;
-                break;
-            case 15:
+            case 5 -> this.x++;
+            case 10 -> this.y++;
+            case 15 -> {
                 this.x--;
                 this.y--;
-                break;
+            }
         }
 
         try {

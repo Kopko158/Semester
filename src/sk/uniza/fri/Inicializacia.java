@@ -14,7 +14,6 @@ public class Inicializacia {
     public Inicializacia() {
 
         String vyber;
-        String moznosti;
         int cislo = 0;
 
        // Stav prazdne = Stav.PRAZDNE;
