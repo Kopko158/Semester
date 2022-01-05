@@ -18,10 +18,6 @@ public class Inicializacia {
         String vyber;
         int cislo = 0;
 
-       // Stav prazdne = Stav.PRAZDNE;
-       // Stav xove = Stav.XOVE;
-       // Stav ockove = Stav.OCKOVE;
-
         do {
             vyber = JOptionPane.showInputDialog(null, "Zadaj formát (terminal/grafika)");
             if (vyber.equals("terminal")) {
@@ -62,11 +58,11 @@ public class Inicializacia {
                 }
                 cislo++;
 
-                //System.out.println(cislo);
+
             } else if (vyber.equals("grafika")) {
                 new Frame();
                 cislo++;
-                //System.out.println(cislo);
+
             } else {
                 JOptionPane.showMessageDialog(null, "Zadal si nesprávnu voľbu.");
             }

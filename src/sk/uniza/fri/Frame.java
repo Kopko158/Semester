@@ -42,12 +42,6 @@ public class Frame extends JFrame implements ActionListener {
 
     private ZapisSuboru zapis = new ZapisSuboru();
 
-
-    // private Stav prazdne = Stav.PRAZDNE;
-    // private Stav xove = Stav.XOVE;
-    // private Stav ockove = Stav.OCKOVE;
-
-
     /**
      *
      */

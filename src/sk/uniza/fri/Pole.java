@@ -242,21 +242,18 @@ public class Pole {
         return vysledok;
     }
 
-    /**
-     *
-     */
     public boolean kontrolaRemizy() {
         int plnePolicko = 0;
         for (int x = 0; x < this.velkost; x++)  {
             for (int y = 0; y < this.velkost; y++) {
-                if (this.hraciaPlocha[x][y] != ' ') {
+                if (this.hraciaPlocha[x][y] == ' ') {
                     plnePolicko++;
                 }
             }
+
         }
         if (plnePolicko == 9) {
             System.out.println("Nastala remíza");
-            return true;
         }
         return false;
     }
