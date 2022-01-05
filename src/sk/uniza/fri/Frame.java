@@ -48,7 +48,7 @@ public class Frame extends JFrame implements ActionListener {
     // private Stav ockove = Stav.OCKOVE;
 
 
-    /***
+    /**
      *
      */
     Frame() {
@@ -69,7 +69,6 @@ public class Frame extends JFrame implements ActionListener {
         this.textfield.setForeground(Color.white);
         this.textfield.setHorizontalAlignment(JLabel.CENTER);
         this.textfield.setFont(new Font(Font.SERIF, Font.BOLD, 30));
-        this.textfield.setText("Hru spustíš kliknutím na políčko");
         this.textfield.setOpaque(true);
 
         JPanel tlacitkovy = new JPanel();
@@ -97,7 +96,7 @@ public class Frame extends JFrame implements ActionListener {
         this.prvyTah();
     }
 
-    /***
+    /**
      *
      */
     @Override
@@ -116,7 +115,7 @@ public class Frame extends JFrame implements ActionListener {
                         this.tlacitka[i].setForeground(new Color(255, 0, 0));
                         this.tlacitka[i].setText("X");
                         this.hrac1Pohyb = false;//
-                        this.textfield.setText("O tah");
+                        this.textfield.setText("O na ťahu");
                         if (this.kontrolaX() && this.kontrolaO()) {
                             this.kontrolaRemizy();
                         }
@@ -127,7 +126,7 @@ public class Frame extends JFrame implements ActionListener {
                         this.tlacitka[i].setForeground(new Color(0, 0, 255));
                         this.tlacitka[i].setText("O");
                         this.hrac1Pohyb = true;
-                        this.textfield.setText("X tah");//
+                        this.textfield.setText("X na ťahu");//
                         if (this.kontrolaX() && this.kontrolaO()) {
                             this.kontrolaRemizy();
                         }
@@ -138,6 +137,9 @@ public class Frame extends JFrame implements ActionListener {
 
     }
 
+    /**
+     *
+     */
     public void prvyTah() {
         if (this.random.nextInt(2) == 0) {
             this.hrac1Pohyb = true;
@@ -148,7 +150,7 @@ public class Frame extends JFrame implements ActionListener {
         }
     }
 
-    /***
+    /**
      *
      */
     public boolean kontrolaX() {
@@ -228,7 +230,7 @@ public class Frame extends JFrame implements ActionListener {
         return true;
     }
 
-    /***
+    /**
      *
      */
     public boolean kontrolaO() {
@@ -308,7 +310,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
 
-    /***
+    /**
      *
      */
     public void kontrolaRemizy() {
@@ -323,7 +325,7 @@ public class Frame extends JFrame implements ActionListener {
         }
     }
 
-    /***
+    /**
      *
      */
     public void vyhraX(int a, int b, int c) {
@@ -338,7 +340,7 @@ public class Frame extends JFrame implements ActionListener {
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
-    /***
+    /**
      *
      */
     public void vyhraO(int a, int b, int c) {
@@ -353,7 +355,7 @@ public class Frame extends JFrame implements ActionListener {
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
-    /***
+    /**
      *
      */
     public void remiza() {
@@ -366,7 +368,7 @@ public class Frame extends JFrame implements ActionListener {
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
-    /***
+    /**
      *
      */
     public void reset() {
@@ -375,7 +377,7 @@ public class Frame extends JFrame implements ActionListener {
             this.tlacitka[x].setText("");
             this.tlacitka[x].setBackground(Color.white);
         }
-        this.textfield.setText("");
+        this.textfield.setText("Začni stlačením tlačidla");
     }
 }
 

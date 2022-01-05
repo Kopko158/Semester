@@ -1,5 +1,4 @@
 package sk.uniza.fri;
-
 /**
  * 3.1.2022 - 20:10
  *
@@ -16,14 +15,23 @@ public class Pole {
     private char[][] hraciaPlocha;
     private char poslednyPohyb;
 
+    /**
+     *
+     */
     public char getPoslednyPohyb() {
         return this.poslednyPohyb;
     }
 
+    /**
+     *
+     */
     public char[][] getHraciaPlocha() {
         return this.hraciaPlocha;
     }
 
+    /**
+     *
+     */
     public Pole(int velkost) {
         if (MAX_VELKOST_POLA < velkost || velkost < MIN_VELKOST_POLA) {
             this.velkost = ZAKLADNA_VELKOST_POLA;
@@ -32,6 +40,9 @@ public class Pole {
         }
     }
 
+    /**
+     *
+     */
     public void vytvorNovePole() {
         this.hraciaPlocha = new char[this.velkost][this.velkost];
         for (int x = 0; x < this.velkost; x++) {
@@ -41,6 +52,9 @@ public class Pole {
         }
     }
 
+    /**
+     *
+     */
     public void zobrazPole() {
         System.out.print("  |");
         for (int i = 0; i < this.velkost; i++) {
@@ -69,6 +83,9 @@ public class Pole {
         System.out.println();
     }
 
+    /**
+     *
+     */
     public void nastavPole(char znak, int[] krok) {
 
         int riadok = krok[0];
@@ -79,6 +96,9 @@ public class Pole {
 
     }
 
+    /**
+     *
+     */
     public boolean overObsadenie(int[] krok) {
 
         int riadok = krok[0];
@@ -87,6 +107,9 @@ public class Pole {
 
     }
 
+    /**
+     *
+     */
     public void krokPC(char znak) {
         String seria = "";
         for (int x = 0; x < this.velkost; x++) {
@@ -109,6 +132,9 @@ public class Pole {
         this.poslednyPohyb = znak;
     }
 
+    /**
+     *
+     */
     public boolean kontrolaPravaDiagonala(char citac, int x, int y) {
         int pocitac = 0;
         boolean vysledok = false;
@@ -134,6 +160,9 @@ public class Pole {
         return vysledok;
     }
 
+    /**
+     *
+     */
     public boolean kontrolaLavaDiagonala(char citac, int x, int y) {
         int pocitac = 0;
         boolean vysledok = false;
@@ -159,6 +188,9 @@ public class Pole {
         return vysledok;
     }
 
+    /**
+     *
+     */
     public boolean kontrolaRiadok(char citac, int x, int y) {
         int pocitac = 0;
         boolean vysledok = false;
@@ -183,6 +215,9 @@ public class Pole {
         return vysledok;
     }
 
+    /**
+     *
+     */
     public boolean kontrolaStlpec(char citac, int x, int y) {
         int pocitac = 0;
         boolean vysledok = false;
@@ -207,6 +242,28 @@ public class Pole {
         return vysledok;
     }
 
+    /**
+     *
+     */
+    public boolean kontrolaRemizy() {
+        int plnePolicko = 0;
+        for (int x = 0; x < this.velkost; x++)  {
+            for (int y = 0; y < this.velkost; y++) {
+                if (this.hraciaPlocha[x][y] != ' ') {
+                    plnePolicko++;
+                }
+            }
+        }
+        if (plnePolicko == 9) {
+            System.out.println("Nastala remíza");
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     *
+     */
     public boolean kontrolaVyhry() {
         boolean vysledok = false;
         for (int x = 0; x < this.velkost; x++) {
@@ -226,12 +283,12 @@ public class Pole {
                     if (!vysledok) {
                         vysledok = this.kontrolaStlpec(citac, x, y);
                     }
+                } else {
+                    vysledok = this.kontrolaRemizy();
                 }
             }
         }
         return vysledok;
-
-
     }
 
 

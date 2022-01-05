@@ -9,6 +9,9 @@ import java.util.Scanner;
  */
 public class Vstup {
 
+    /**
+     *
+     */
     public static int[] dajPoziciu() {
 
         int riadok;

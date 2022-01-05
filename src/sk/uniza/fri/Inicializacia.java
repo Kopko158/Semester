@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 public class Inicializacia {
 
 
-
+    /**
+     *
+     */
     public Inicializacia() {
 
         String vyber;
@@ -38,7 +40,11 @@ public class Inicializacia {
                             System.out.println(" Víťaz je " + pole.getPoslednyPohyb());
                             pole.zobrazPole();
                             break;
+                        } else if (pole.kontrolaRemizy()){
+                            pole.zobrazPole();
+
                         }
+
                         pole.krokPC('O');
                         pole.zobrazPole();
                         if (pole.kontrolaVyhry()) {
@@ -46,7 +52,10 @@ public class Inicializacia {
                             System.out.println(" Víťaz je " + pole.getPoslednyPohyb());
                             pole.zobrazPole();
                             break;
+                        } else if (pole.kontrolaRemizy()) {
+                            pole.zobrazPole();
                         }
+
                     } else {
                         System.out.println("Opakuj volbu zly tah, obsadene policko\n");
                     }
@@ -55,7 +64,7 @@ public class Inicializacia {
 
                 //System.out.println(cislo);
             } else if (vyber.equals("grafika")) {
-                Frame frame = new Frame();
+                new Frame();
                 cislo++;
                 //System.out.println(cislo);
             } else {
