@@ -15,30 +15,25 @@ import java.awt.Font;
 import static java.awt.BorderLayout.NORTH;
 
 /**
- * 6.1.2022 - 15:30
+ * @version 6.1.2022 - 15:30
  *
  * @author Andrej Kopas
  */
 public class Frame extends JFrame implements ActionListener {
 
     private Random random = new Random();
-
-    private JLabel textfield = new JLabel();
-
+    private JLabel textovePole = new JLabel();
     private JButton[] tlacitka = new JButton[9];
     private JButton reset = new JButton();
-    //private Timer timer = new Timer();
     private boolean hrac1Pohyb;
-
     private int vyhral = 0;
-
     private ZapisSuboru zapis = new ZapisSuboru();
 
-    /***
+    /**
      * Všeobecné nastavenie hernej plochy, headeru, footra, centrovanie, nastavenie textu, farby..
      * Zavolanie metódy prvého ťahu
      */
-    Frame() {
+    public Frame() {
         JFrame frame = new JFrame();
         frame.setTitle("PiskvorkyGrafika");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,11 +50,11 @@ public class Frame extends JFrame implements ActionListener {
         footer.setBackground(Color.green);
         footer.setPreferredSize(new Dimension(500, 50));
 
-        this.textfield.setBackground(Color.blue);
-        this.textfield.setForeground(Color.white);
-        this.textfield.setHorizontalAlignment(JLabel.CENTER);
-        this.textfield.setFont(new Font(Font.SERIF, Font.BOLD, 30));
-        this.textfield.setOpaque(true);
+        this.textovePole.setBackground(Color.blue);
+        this.textovePole.setForeground(Color.white);
+        this.textovePole.setHorizontalAlignment(JLabel.CENTER);
+        this.textovePole.setFont(new Font(Font.SERIF, Font.BOLD, 30));
+        this.textovePole.setOpaque(true);
 
         JPanel tlacitkovy = new JPanel();
         tlacitkovy.setLayout(new GridLayout(3, 3));
@@ -75,7 +70,7 @@ public class Frame extends JFrame implements ActionListener {
             this.tlacitka[i].addActionListener(this);
         }
 
-        title.add(this.textfield);
+        title.add(this.textovePole);
 
         frame.add(title, NORTH);
         frame.add(tlacitkovy);
@@ -86,13 +81,13 @@ public class Frame extends JFrame implements ActionListener {
         this.prvyTah();
     }
 
-    /***
+    /**
      * pridanie vykonanie akcie resetu po kliknutí na tlačítko reset
      *
      * Interakcia tlačítok
      *
      * Vypisovanie poradia kto je na ťahu
-     * @param e
+     * @param e slúži na pristupovanie k akciám
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -110,7 +105,7 @@ public class Frame extends JFrame implements ActionListener {
                         this.tlacitka[i].setForeground(new Color(255, 0, 0));
                         this.tlacitka[i].setText("X");
                         this.hrac1Pohyb = false;//
-                        this.textfield.setText("O na ťahu");
+                        this.textovePole.setText("O na ťahu");
                         if (this.kontrolaX() && this.kontrolaO()) {
                             this.kontrolaRemizy();
                         }
@@ -121,7 +116,7 @@ public class Frame extends JFrame implements ActionListener {
                         this.tlacitka[i].setForeground(new Color(0, 0, 255));
                         this.tlacitka[i].setText("O");
                         this.hrac1Pohyb = true;
-                        this.textfield.setText("X na ťahu");//
+                        this.textovePole.setText("X na ťahu");//
                         if (this.kontrolaX() && this.kontrolaO()) {
                             this.kontrolaRemizy();
                         }
@@ -132,22 +127,22 @@ public class Frame extends JFrame implements ActionListener {
 
     }
 
-    /***
+    /**
      * Metóda, ktorá určuje ktorý hráč pôjde prvý
      */
     public void prvyTah() {
         if (this.random.nextInt(2) == 0) {
             this.hrac1Pohyb = true;
-            this.textfield.setText("X na ťahu");
+            this.textovePole.setText("X na ťahu");
         } else {
             this.hrac1Pohyb = false;
-            this.textfield.setText("O na ťahu");
+            this.textovePole.setText("O na ťahu");
         }
     }
 
-    /***
+    /**
      * V tejto metóde sa kontroluje zhoda tlačítok, či náhodou uloženia znakov X nevyhralo
-     * @return
+     * @return vracia či kontrolou kombinácii talčítok nenastala výhra
      */
     public boolean kontrolaX() {
         //X
@@ -226,9 +221,9 @@ public class Frame extends JFrame implements ActionListener {
         return true;
     }
 
-    /***
+    /**
      * V tejto metóde sa kontroluje zhoda tlačítok, či náhodou uloženia znakov O nevyhralo
-     * @return
+     * @return vracia či kontrolou kombinácii talčítok nenastala výhra
      */
     public boolean kontrolaO() {
         //O
@@ -307,7 +302,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
 
-    /***
+    /**
      * v tejto metóde sa kontroluje či nenastala remíza
      */
     public void kontrolaRemizy() {
@@ -322,11 +317,11 @@ public class Frame extends JFrame implements ActionListener {
         }
     }
 
-    /***
+    /**
      * Výpis a nastevenie výherných tlačidiel na zelenú farbu ak vyhralo X
-     * @param a
-     * @param b
-     * @param c
+     * @param a čislo prvého tlačitka pre X
+     * @param b čislo druhého tlačitka pre X
+     * @param c čislo tretieho tlačitka pre X
      */
     public void vyhraX(int a, int b, int c) {
         this.vyhral = 5;
@@ -336,15 +331,15 @@ public class Frame extends JFrame implements ActionListener {
         for (int i = 0; i < 9; i++) {
             this.tlacitka[i].setEnabled(false);
         }
-        this.textfield.setText("X vyhralo");
+        this.textovePole.setText("X vyhralo");
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
-    /***
+    /**
      * Výpis a nastevenie výherných tlačidiel na červenú farbu ak vyhralo O
-     * @param a
-     * @param b
-     * @param c
+     * @param a čislo prvého tlačitka pre O
+     * @param b čislo druhého tlačitka pre O
+     * @param c čislo tretieho tlačitka pre O
      */
     public void vyhraO(int a, int b, int c) {
         this.vyhral = 10;
@@ -354,11 +349,11 @@ public class Frame extends JFrame implements ActionListener {
         for (int i = 0; i < 9; i++) {
             this.tlacitka[i].setEnabled(false);
         }
-        this.textfield.setText("O vyhralo");
+        this.textovePole.setText("O vyhralo");
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
-    /***
+    /**
      * Metóda ktorá nastaví tlačítka na sivo pokial nastane remíza
      */
     public void remiza() {
@@ -367,11 +362,11 @@ public class Frame extends JFrame implements ActionListener {
             this.tlacitka[x].setBackground(Color.gray);
             this.tlacitka[x].setEnabled(false);
         }
-        this.textfield.setText("Remíza");
+        this.textovePole.setText("Remíza");
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
-    /***
+    /**
      * V tejto metóde sa nastavuje resetovanie tlačítok a nastavenie na novú hru
      */
     public void reset() {
@@ -380,7 +375,7 @@ public class Frame extends JFrame implements ActionListener {
             this.tlacitka[x].setText("");
             this.tlacitka[x].setBackground(Color.white);
         }
-        this.textfield.setText("Začni stlačením tlačidla");
+        this.textovePole.setText("Začni stlačením tlačidla");
     }
 }
 

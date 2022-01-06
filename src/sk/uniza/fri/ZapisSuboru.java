@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.FileReader;
 
 /**
- * 6.1.2022 - 15:30
+ * @version 6.1.2022 - 15:30
  *
  * @author Andrej Kopas
  */
@@ -51,9 +51,9 @@ public class ZapisSuboru {
         try {
             FileWriter statsW = new FileWriter("statistiky.txt");
             statsW.write("\n\nAktuálna hra (pokial sa nezavrie aplikácia) : \n");
-            statsW.write("Ak vyhráš dostaneš +1b ak prehráš body ostávajú, ale ak nastane remíza dostanete obaja -1b) : \n");
+            statsW.write("Ak vyhráš dostaneš +1b a ak nastane remíza body ostávajú z predchádzajúceho stavu) : \n");
             statsW.write("Výhry X: " + this.x );
-            statsW.write("\n Výhry O: " + this.y );
+            statsW.write("\nVýhry O: " + this.y );
             statsW.close();
         } catch (IOException e) {
             System.out.println("Nastal niekde problem.");

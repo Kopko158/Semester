@@ -1,6 +1,6 @@
 package sk.uniza.fri;
 /**
- * 6.1.2022 - 15:30
+ * @version 6.1.2022 - 15:30
  *
  * @author Andrej Kopas
  */
@@ -15,8 +15,7 @@ public class Pole {
     private char[][] hraciaPlocha;
     private char poslednyPohyb;
 
-
-    /***
+    /**
      * Nastavenie plochy a overenie či nie je väčšia alebo menšia ako je povolené, ak presahuje nastaví defaultnú veľkosť
      * @param velkost
      */
@@ -28,12 +27,15 @@ public class Pole {
         }
     }
 
-
+    /**
+     * metóda vracia hodnotu velkosti pri hre v termináli
+     * @return velkost
+     */
     public int dajVelkost() {
         return this.velkost;
     }
 
-    /***
+    /**
      * Vytvorenie noveho herneho poľa
      */
     public void vytvorNovePole() {
@@ -78,8 +80,8 @@ public class Pole {
 
     /**
      * Ťah použivateľa
-     * @param krok
-     * @param znak
+     * @param krok určuje riadok, stlpec
+     * @param znak určuje znak 'x'
      */
     public void nastavPole(char znak, int[] krok) {
 
@@ -93,7 +95,7 @@ public class Pole {
 
     /**
      * vráti hodnotu kto naposledy bol na ťahu
-     * @return
+     * @return vráti kto bol posledný na ťahu
      */
     public char getPoslednyPohyb() {
         return this.poslednyPohyb;
@@ -101,8 +103,8 @@ public class Pole {
 
     /**
      * Overenie obsadenia políčok
-     * @param krok
-     * @return
+     * @param krok určuje riadok, stlpec
+     * @return vrati [riadok][stlpec] ak tam nič nie je
      */
     public boolean overObsadenie(int[] krok) {
 
@@ -113,8 +115,8 @@ public class Pole {
     }
 
     /**
-     * ťah počítača
-     * @param znak
+     * Ťah počítača
+     * @param znak určuje znak 'o'
      */
     public void krokPC(char znak) {
         String seria = "";
@@ -140,10 +142,10 @@ public class Pole {
 
     /**
      * Kontrola či sa nenachádzajú rovnaké symboly v pravej diagonále
-     * @param citac
-     * @param x
-     * @param y
-     * @return
+     * @param citac čita či je v poličku nejaký znak
+     * @param x .
+     * @param y .
+     * @return vrati či nenastala vyhra v pravej diagonale
      */
     public boolean kontrolaPravaDiagonala(char citac, int x, int y) {
         int pocet = 0;
@@ -166,10 +168,10 @@ public class Pole {
 
     /**
      * Kontrola či sa nenachádzajú rovnaké symboly v pravej diagonále
-     * @param citac
-     * @param x
-     * @param y
-     * @return
+     * @param citac čita či je v poličku nejaký znak
+     * @param x .
+     * @param y .
+     * @return vrati či nenastala vyhra v lavej diagonale
      */
     public boolean kontrolaLavaDiagonala(char citac, int x, int y) {
         int counter = 0;
@@ -192,10 +194,10 @@ public class Pole {
 
     /**
      * Kontrola či sa nenachádzajú rovnaké symboly v riadku
-     * @param citac
+     * @param citac čita či je v poličku nejaký znak
      * @param x
-     * @param y
-     * @return
+     * @param y .
+     * @return vrati či nenastala vyhra v riadku
      */
     public boolean kontrolaRiadok(char citac, int x, int y) {
         int pocetR = 0;
@@ -218,10 +220,10 @@ public class Pole {
 
     /**
      * Kontrola či sa nenachádzajú rovnaké symboly v stĺpci
-     * @param citac
-     * @param x
-     * @param y
-     * @return
+     * @param citac čita či je v poličku nejaký znak
+     * @param x  .
+     * @param y .
+     * @return vrati či nenastala vyhra v stlpci
      */
     public boolean kontrolaStlpec(char citac, int x, int y) {
         int pocetS = 0;
@@ -242,7 +244,7 @@ public class Pole {
 
     /**
      * Kontrola či nastala remíza
-     * @return
+     * @return vrati či nenastala remíza
      */
     public boolean kontrolaRemizy() {
         int plnePolicko = 0;
@@ -254,7 +256,8 @@ public class Pole {
             }
         }
         if (plnePolicko == 9) {
-            System.out.println("Nastala remíza");
+            System.out.println("\nHra skončila");
+            System.out.println("\nNastala remíza\n");
             this.zobrazPole();
         }
         return false;
@@ -262,7 +265,7 @@ public class Pole {
 
     /**
      * Kontrola či niekto vyhral
-     * @return
+     * @return vrati ak nastala nejaka z vyhier
      */
     public boolean kontrolaVyhry() {
         boolean vysledok = false;

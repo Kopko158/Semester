@@ -2,14 +2,14 @@ package sk.uniza.fri;
 
 import java.util.Scanner;
 
-       /**
-        * 6.1.2022 - 15:30
-        *
-        * @author Andrej Kopas
-        */
+/**
+ * @version 6.1.2022 - 15:30
+ *
+ * @author Andrej Kopas
+ */
 public class Vstup {
 
-           /***
+           /**
             * Metóda, ktorá načíta zadané pozície riadok/stlpec použivatelom z konzoly
             * @param velkost určuje aká plocha je vytvorená
             * @return vracia súradnie [x,y] - [riadok,stlpec]
@@ -21,7 +21,6 @@ public class Vstup {
         int[] krok = new int[2];
 
         Scanner scanner = new Scanner(System.in);
-
 
         System.out.println("Zadaj riadok");
         riadok = scanner.nextInt();

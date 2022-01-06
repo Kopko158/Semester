@@ -1,6 +1,6 @@
 
 
 Aktuálna hra (pokial sa nezavrie aplikácia) : 
-Ak vyhráš dostaneš +1b ak prehráš body ostávajú, ale ak nastane remíza dostanete obaja -1b) : 
-Výhry X: 0
- Výhry O: 1
+Ak vyhráš dostaneš +1b a ak nastane remíza body ostávajú z predchádzajúceho stavu) : 
+Výhry X: 2
+Výhry O: 2

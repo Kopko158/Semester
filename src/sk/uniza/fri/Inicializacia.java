@@ -3,14 +3,13 @@ package sk.uniza.fri;
 import javax.swing.JOptionPane;
 
 /**
- * 6.1.2022 - 15:30
+ * @version 6.1.2022 - 15:30
  *
  * @author Andrej Kopas
  */
 public class Inicializacia {
 
-
-    /***
+    /**
      * Úvodné okno cez ktoré si užívateľ vyberá možnosť či chce hrať terminálovú formu alebo grafickú
      *  Ak sa vyberie terminálová tak sa aj inicializujú základné nastavenia + overenia výhry a vypísanie výhercu
      */
@@ -50,7 +49,7 @@ public class Inicializacia {
                             pole.zobrazPole();
                             break;
                         } else if (pole.kontrolaRemizy()) {
-                            System.out.println("Hra skončila\n");
+                            System.out.println("Hra skončila");
                         }
 
                     } else {
