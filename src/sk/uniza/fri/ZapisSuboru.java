@@ -13,13 +13,12 @@ import java.io.FileReader;
 
 public class ZapisSuboru {
 
-    //private File  suhrn = new File("suhrn.txt");
     private File statistiky = new File("statistiky.txt");
     private int x = 0;
     private int y = 0;
 
     /**
-     * Vytvorí ak ešte nie sú vytvorené textový dokument  statistiky.txt
+     * Vytvorí ak ešte nie je vytvorený textový dokument statistiky.txt
      */
     public ZapisSuboru() {
         try {
@@ -60,6 +59,7 @@ public class ZapisSuboru {
         }
         this.vypisZoSuboru();
     }
+
     /**
      * Metóda ktorá prečíta všetko zo súboru a vypíše do konzoly
      *
@@ -68,7 +68,6 @@ public class ZapisSuboru {
      * System.out.print((char)i);
      * }
      * použite z https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
-     *
      */
     public void vypisZoSuboru() {
         try {

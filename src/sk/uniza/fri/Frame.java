@@ -26,10 +26,6 @@ import static java.awt.BorderLayout.NORTH;
 public class Frame extends JFrame implements ActionListener {
 
     private Random random = new Random();
-    private JFrame frame = new JFrame();
-
-    private JPanel title = new JPanel();
-    private JPanel footer = new JPanel();
 
     private JLabel textfield = new JLabel();
 
@@ -43,21 +39,25 @@ public class Frame extends JFrame implements ActionListener {
     private ZapisSuboru zapis = new ZapisSuboru();
 
     /**
-     *
+     * Všeobecné nastavenie hernej plochy, headeru, footra, centrovanie, nastavenie textu, farby..
+     * Zavolanie metódy prvého ťahu
      */
     Frame() {
-        this.frame.setTitle("PiskvorkyGrafika");
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setSize(500, 500);
-        this.frame.setLayout(new BorderLayout());
-        this.frame.setVisible(true);
+        JFrame frame = new JFrame();
+        frame.setTitle("PiskvorkyGrafika");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 500);
+        frame.setLayout(new BorderLayout());
+        frame.setVisible(true);
 
-        this.title.setBackground(Color.GRAY);
-        this.title.setPreferredSize(new Dimension(500, 100));
-        this.title.setLayout(new BorderLayout());
+        JPanel title = new JPanel();
+        title.setBackground(Color.GRAY);
+        title.setPreferredSize(new Dimension(500, 100));
+        title.setLayout(new BorderLayout());
 
-        this.footer.setBackground(Color.green);
-        this.footer.setPreferredSize(new Dimension(500, 50));
+        JPanel footer = new JPanel();
+        footer.setBackground(Color.green);
+        footer.setPreferredSize(new Dimension(500, 50));
 
         this.textfield.setBackground(Color.blue);
         this.textfield.setForeground(Color.white);
@@ -79,18 +79,24 @@ public class Frame extends JFrame implements ActionListener {
             this.tlacitka[i].addActionListener(this);
         }
 
-        this.title.add(this.textfield);
+        title.add(this.textfield);
 
-        this.frame.add(this.title, NORTH);
-        this.frame.add(tlacitkovy);
-        this.frame.add(this.footer, BorderLayout.SOUTH);
+        frame.add(title, NORTH);
+        frame.add(tlacitkovy);
+        frame.add(footer, BorderLayout.SOUTH);
 
-        this.footer.add(this.reset, BorderLayout.CENTER);
+        footer.add(this.reset, BorderLayout.CENTER);
 
         this.prvyTah();
     }
 
     /**
+     *
+     * pridanie vykonanie akcie resetu po kliknutí na tlačítko reset
+     *
+     * Interakcia tlačítok
+     *
+     * Vypisovanie poradia kto je na ťahu
      *
      */
     @Override
@@ -132,7 +138,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
     /**
-     *
+     * Metóda, ktorá určuje ktorý hráč pôjde prvý
      */
     public void prvyTah() {
         if (this.random.nextInt(2) == 0) {
@@ -145,7 +151,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
     /**
-     *
+     * V tejto metóde sa kontroluje zhoda tlačítok, či náhodou uloženia znakov X nevyhralo
      */
     public boolean kontrolaX() {
         //X
@@ -225,7 +231,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
     /**
-     *
+     * V tejto metóde sa kontroluje zhoda tlačítok, či náhodou uloženia znakov O nevyhralo
      */
     public boolean kontrolaO() {
         //O
@@ -305,7 +311,7 @@ public class Frame extends JFrame implements ActionListener {
 
 
     /**
-     *
+     * v tejto metóde sa kontroluje či nenastala remíza
      */
     public void kontrolaRemizy() {
         int plnePolicko = 0;
@@ -320,7 +326,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
     /**
-     *
+     * Výpis a nastevenie výherných tlačidiel na zelenú farbu ak vyhralo X
      */
     public void vyhraX(int a, int b, int c) {
         this.vyhral = 5;
@@ -335,7 +341,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
     /**
-     *
+     * Výpis a nastevenie výherných tlačidiel na červenú farbu ak vyhralo O
      */
     public void vyhraO(int a, int b, int c) {
         this.vyhral = 10;
@@ -350,7 +356,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
     /**
-     *
+     *  Metóda ktorá nastaví tlačítka na sivo pokial nastane remíza
      */
     public void remiza() {
         this.vyhral = 15;
@@ -363,7 +369,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
     /**
-     *
+     * V tejto metóde sa nastavuje resetovanie tlačítok a nastavenie na novú hru
      */
     public void reset() {
         for (int x = 0; x < 9; x++) {

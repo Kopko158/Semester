@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Vstup {
 
     /**
-     *
+     * Metóda, ktorá načíta zadané pozície riadok/stlpec použivatelom z konzoly
      */
     public static int[] dajPoziciu() {
 
@@ -22,6 +22,13 @@ public class Vstup {
 
         System.out.println("Zadaj riadok");
         riadok = scanner.nextInt();
+
+       /* if (riadok <  && riadok > ) {
+            System.out.println("Zadavaj len čisla z plochy \n");
+            System.out.println("Zadaj riadok");
+            riadok = scanner.nextInt();
+        }*/
+
         System.out.println("Zadaj stlpec");
         stlpec = scanner.nextInt();
 

@@ -2,5 +2,5 @@
 
 Aktuálna hra (pokial sa nezavrie aplikácia) : 
 Ak vyhráš dostaneš +1b ak prehráš body ostávajú, ale ak nastane remíza dostanete obaja -1b) : 
-Tvoje výhry: 1
-Protihráčové výhry: 0
+Tvoje výhry: 0
+Protihráčové výhry: 1

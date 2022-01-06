@@ -15,22 +15,9 @@ public class Pole {
     private char[][] hraciaPlocha;
     private char poslednyPohyb;
 
-    /**
-     *
-     */
-    public char getPoslednyPohyb() {
-        return this.poslednyPohyb;
-    }
 
     /**
-     *
-     */
-    public char[][] getHraciaPlocha() {
-        return this.hraciaPlocha;
-    }
-
-    /**
-     *
+     * Nastavenie plochy a overenie či nie je väčšia alebo menšia ako je povolené, ak presahuje nastaví defaultnú veľkosť
      */
     public Pole(int velkost) {
         if (MAX_VELKOST_POLA < velkost || velkost < MIN_VELKOST_POLA) {
@@ -41,7 +28,24 @@ public class Pole {
     }
 
     /**
-     *
+     * vráti hodnotu kto naposledy bol na ťahu
+     */
+    public char getPoslednyPohyb() {
+        return this.poslednyPohyb;
+    }
+
+    /*
+    public char[][] getHraciaPlocha() {
+        return this.hraciaPlocha;
+    }
+    */
+
+    public int dajVelkost() {
+        return this.velkost;
+    }
+
+    /**
+     *  Vytvorenie noveho herneho poľa
      */
     public void vytvorNovePole() {
         this.hraciaPlocha = new char[this.velkost][this.velkost];
@@ -53,7 +57,7 @@ public class Pole {
     }
 
     /**
-     *
+     * Vykreslenie pola do terminálu
      */
     public void zobrazPole() {
         System.out.print("  |");
@@ -84,7 +88,7 @@ public class Pole {
     }
 
     /**
-     *
+     * Ťah použivateľa
      */
     public void nastavPole(char znak, int[] krok) {
 
@@ -97,7 +101,7 @@ public class Pole {
     }
 
     /**
-     *
+     * Overenie obsadenia políčok
      */
     public boolean overObsadenie(int[] krok) {
 
@@ -108,7 +112,7 @@ public class Pole {
     }
 
     /**
-     *
+     * Ťah počítača
      */
     public void krokPC(char znak) {
         String seria = "";
@@ -133,20 +137,20 @@ public class Pole {
     }
 
     /**
-     *
+     * Kontrola či sa nenachádzajú rovnaké symboly v pravej diagonále
      */
     public boolean kontrolaPravaDiagonala(char citac, int x, int y) {
         int pocitac = 0;
-        boolean vysledok = false;
+        boolean vysledokPD = false;
 
         if (this.velkost - y >= VYHERNA_SERIA && this.velkost - x >= VYHERNA_SERIA) {
             for (int i = y; i <= this.velkost; i++) {
                 if (pocitac >= VYHERNA_SERIA) {
-                    vysledok = true;
+                    vysledokPD = true;
                     break;
                 } else {
                     if (this.hraciaPlocha[x][i] != citac) {
-                        vysledok = false;
+                        vysledokPD = false;
                         break;
                     } else {
                         pocitac++;
@@ -155,13 +159,13 @@ public class Pole {
                 }
             }
         } else {
-            vysledok = false;
+            vysledokPD = false;
         }
-        return vysledok;
+        return vysledokPD;
     }
 
     /**
-     *
+     * Kontrola či sa nenachádzajú rovnaké symboly v pravej diagonále
      */
     public boolean kontrolaLavaDiagonala(char citac, int x, int y) {
         int pocitac = 0;
@@ -189,7 +193,7 @@ public class Pole {
     }
 
     /**
-     *
+     * Kontrola či sa nenachádzajú rovnaké symboly v riadku
      */
     public boolean kontrolaRiadok(char citac, int x, int y) {
         int pocitac = 0;
@@ -216,7 +220,7 @@ public class Pole {
     }
 
     /**
-     *
+     * Kontrola či sa nenachádzajú rovnaké symboly v stĺpci
      */
     public boolean kontrolaStlpec(char citac, int x, int y) {
         int pocitac = 0;
@@ -242,24 +246,27 @@ public class Pole {
         return vysledok;
     }
 
+    /**
+     * Kontrola či nastala remíza
+     */
     public boolean kontrolaRemizy() {
         int plnePolicko = 0;
         for (int x = 0; x < this.velkost; x++)  {
             for (int y = 0; y < this.velkost; y++) {
-                if (this.hraciaPlocha[x][y] == ' ') {
+                if (this.hraciaPlocha[x][y] != ' ') {
                     plnePolicko++;
                 }
             }
-
         }
         if (plnePolicko == 9) {
             System.out.println("Nastala remíza");
+            this.zobrazPole();
         }
         return false;
     }
 
     /**
-     *
+     * Kontrola či niekto vyhral
      */
     public boolean kontrolaVyhry() {
         boolean vysledok = false;
@@ -280,8 +287,6 @@ public class Pole {
                     if (!vysledok) {
                         vysledok = this.kontrolaStlpec(citac, x, y);
                     }
-                } else {
-                    vysledok = this.kontrolaRemizy();
                 }
             }
         }

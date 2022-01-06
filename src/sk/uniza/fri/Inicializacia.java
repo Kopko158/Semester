@@ -11,7 +11,8 @@ public class Inicializacia {
 
 
     /**
-     *
+     * Úvodné okno cez ktoré si užívateľ vyberá možnosť či chce hrať terminálovú formu alebo grafickú
+     * Ak sa vyberie terminálová tak sa aj inicializujú základné nastavenia + overenia výhry a vypísanie výhercu
      */
     public Inicializacia() {
 
@@ -37,7 +38,7 @@ public class Inicializacia {
                             pole.zobrazPole();
                             break;
                         } else if (pole.kontrolaRemizy()){
-                            pole.zobrazPole();
+                            //pole.zobrazPole();
 
                         }
 
@@ -49,7 +50,7 @@ public class Inicializacia {
                             pole.zobrazPole();
                             break;
                         } else if (pole.kontrolaRemizy()) {
-                            pole.zobrazPole();
+                           // pole.zobrazPole();
                         }
 
                     } else {
