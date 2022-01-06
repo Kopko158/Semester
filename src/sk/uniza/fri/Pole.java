@@ -1,8 +1,8 @@
 package sk.uniza.fri;
 /**
- * 3.1.2022 - 20:10
+ * 6.1.2022 - 15:30
  *
- * @author Andrej
+ * @author Andrej Kopas
  */
 public class Pole {
 
@@ -16,8 +16,9 @@ public class Pole {
     private char poslednyPohyb;
 
 
-    /**
+    /***
      * Nastavenie plochy a overenie či nie je väčšia alebo menšia ako je povolené, ak presahuje nastaví defaultnú veľkosť
+     * @param velkost
      */
     public Pole(int velkost) {
         if (MAX_VELKOST_POLA < velkost || velkost < MIN_VELKOST_POLA) {
@@ -27,25 +28,13 @@ public class Pole {
         }
     }
 
-    /**
-     * vráti hodnotu kto naposledy bol na ťahu
-     */
-    public char getPoslednyPohyb() {
-        return this.poslednyPohyb;
-    }
-
-    /*
-    public char[][] getHraciaPlocha() {
-        return this.hraciaPlocha;
-    }
-    */
 
     public int dajVelkost() {
         return this.velkost;
     }
 
-    /**
-     *  Vytvorenie noveho herneho poľa
+    /***
+     * Vytvorenie noveho herneho poľa
      */
     public void vytvorNovePole() {
         this.hraciaPlocha = new char[this.velkost][this.velkost];
@@ -82,13 +71,15 @@ public class Pole {
 
         System.out.print("***");
         for (int j = 0; j < this.velkost; j++) {
-            System.out.print(" **** ");
+            System.out.print(" *** ");
         }
         System.out.println();
     }
 
     /**
      * Ťah použivateľa
+     * @param krok
+     * @param znak
      */
     public void nastavPole(char znak, int[] krok) {
 
@@ -101,7 +92,17 @@ public class Pole {
     }
 
     /**
+     * vráti hodnotu kto naposledy bol na ťahu
+     * @return
+     */
+    public char getPoslednyPohyb() {
+        return this.poslednyPohyb;
+    }
+
+    /**
      * Overenie obsadenia políčok
+     * @param krok
+     * @return
      */
     public boolean overObsadenie(int[] krok) {
 
@@ -112,7 +113,8 @@ public class Pole {
     }
 
     /**
-     * Ťah počítača
+     * ťah počítača
+     * @param znak
      */
     public void krokPC(char znak) {
         String seria = "";
@@ -138,116 +140,109 @@ public class Pole {
 
     /**
      * Kontrola či sa nenachádzajú rovnaké symboly v pravej diagonále
+     * @param citac
+     * @param x
+     * @param y
+     * @return
      */
     public boolean kontrolaPravaDiagonala(char citac, int x, int y) {
-        int pocitac = 0;
-        boolean vysledokPD = false;
+        int pocet = 0;
 
         if (this.velkost - y >= VYHERNA_SERIA && this.velkost - x >= VYHERNA_SERIA) {
             for (int i = y; i <= this.velkost; i++) {
-                if (pocitac >= VYHERNA_SERIA) {
-                    vysledokPD = true;
-                    break;
+                if (pocet >= VYHERNA_SERIA) {
+                    return true;
                 } else {
                     if (this.hraciaPlocha[x][i] != citac) {
-                        vysledokPD = false;
-                        break;
+                        return false;
                     } else {
-                        pocitac++;
+                        pocet++;
                         x++;
                     }
                 }
             }
-        } else {
-            vysledokPD = false;
-        }
-        return vysledokPD;
+        } return false;
     }
 
     /**
      * Kontrola či sa nenachádzajú rovnaké symboly v pravej diagonále
+     * @param citac
+     * @param x
+     * @param y
+     * @return
      */
     public boolean kontrolaLavaDiagonala(char citac, int x, int y) {
-        int pocitac = 0;
-        boolean vysledok = false;
+        int counter = 0;
 
         if (y >= VYHERNA_SERIA - 1 && this.velkost - x >= VYHERNA_SERIA) {
             for (int i = y; i <= this.velkost; i--) {
-                if (pocitac >= VYHERNA_SERIA) {
-                    vysledok = true;
-                    break;
+                if (counter >= VYHERNA_SERIA) {
+                    return true;
                 } else {
                     if (this.hraciaPlocha[x][i] != citac) {
-                        vysledok = false;
-                        break;
+                        return false;
                     } else {
-                        pocitac++;
+                        counter++;
                         x++;
                     }
                 }
             }
-        } else {
-            vysledok = false;
-        }
-        return vysledok;
+        } return false;
     }
 
     /**
      * Kontrola či sa nenachádzajú rovnaké symboly v riadku
+     * @param citac
+     * @param x
+     * @param y
+     * @return
      */
     public boolean kontrolaRiadok(char citac, int x, int y) {
-        int pocitac = 0;
-        boolean vysledok = false;
+        int pocetR = 0;
 
         if (this.velkost - y >= VYHERNA_SERIA ) {
             for (int i = y; i <= this.velkost; i++) {
-                if (pocitac >= VYHERNA_SERIA) {
-                    vysledok = true;
-                    break;
+                if (pocetR >= VYHERNA_SERIA) {
+                    return true;
                 } else {
                     if (this.hraciaPlocha[x][i] != citac) {
-                        vysledok = false;
-                        break;
+                        return false;
                     } else {
-                        pocitac++;
+                        pocetR++;
                     }
                 }
             }
-        } else {
-            vysledok = false;
         }
-        return vysledok;
+        return false;
     }
 
     /**
      * Kontrola či sa nenachádzajú rovnaké symboly v stĺpci
+     * @param citac
+     * @param x
+     * @param y
+     * @return
      */
     public boolean kontrolaStlpec(char citac, int x, int y) {
-        int pocitac = 0;
-        boolean vysledok = false;
-
+        int pocetS = 0;
         if (this.velkost - x >= VYHERNA_SERIA ) {
             for (int i = x; i <= this.velkost; i++) {
-                if (pocitac >= VYHERNA_SERIA) {
-                    vysledok = true;
-                    break;
+                if (pocetS >= VYHERNA_SERIA) {
+                    return true;
                 } else {
                     if (this.hraciaPlocha[i][y] != citac) {
-                        vysledok = false;
-                        break;
+                        return false;
                     } else {
-                        pocitac++;
+                        pocetS++;
                     }
                 }
             }
-        } else {
-            vysledok = false;
-        }
-        return vysledok;
+        } return false;
     }
 
     /**
      * Kontrola či nastala remíza
+     * @return
      */
     public boolean kontrolaRemizy() {
         int plnePolicko = 0;
@@ -267,6 +262,7 @@ public class Pole {
 
     /**
      * Kontrola či niekto vyhral
+     * @return
      */
     public boolean kontrolaVyhry() {
         boolean vysledok = false;
@@ -292,6 +288,4 @@ public class Pole {
         }
         return vysledok;
     }
-
-
 }

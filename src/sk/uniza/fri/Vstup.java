@@ -2,17 +2,19 @@ package sk.uniza.fri;
 
 import java.util.Scanner;
 
-/**
- * 3.1.2022 - 20:10
- *
- * @author Andrej
- */
+       /**
+        * 6.1.2022 - 15:30
+        *
+        * @author Andrej Kopas
+        */
 public class Vstup {
 
-    /**
-     * Metóda, ktorá načíta zadané pozície riadok/stlpec použivatelom z konzoly
-     */
-    public static int[] dajPoziciu() {
+           /***
+            * Metóda, ktorá načíta zadané pozície riadok/stlpec použivatelom z konzoly
+            * @param velkost určuje aká plocha je vytvorená
+            * @return vracia súradnie [x,y] - [riadok,stlpec]
+            */
+    public static int[] dajPoziciu(int velkost) {
 
         int riadok;
         int stlpec;
@@ -20,17 +22,21 @@ public class Vstup {
 
         Scanner scanner = new Scanner(System.in);
 
+
         System.out.println("Zadaj riadok");
         riadok = scanner.nextInt();
 
-       /* if (riadok <  && riadok > ) {
-            System.out.println("Zadavaj len čisla z plochy \n");
-            System.out.println("Zadaj riadok");
+        while (riadok > velkost-1  || riadok < 0){
+            System.out.println("Zadali ste zlu hodnotu riadku, zadajte znovu");
             riadok = scanner.nextInt();
-        }*/
+        }
 
         System.out.println("Zadaj stlpec");
         stlpec = scanner.nextInt();
+        while (stlpec > velkost-1 || stlpec < 0){
+            System.out.println("Zadali ste zlu hodnotu stlpca, zadajte znovu");
+            stlpec = scanner.nextInt();
+        }
 
         krok[0] = riadok;
         krok[1] = stlpec;

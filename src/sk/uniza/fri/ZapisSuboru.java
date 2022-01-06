@@ -6,9 +6,9 @@ import java.io.FileWriter;
 import java.io.FileReader;
 
 /**
- * 3.1.2022 - 20:10
+ * 6.1.2022 - 15:30
  *
- * @author Andrej
+ * @author Andrej Kopas
  */
 
 public class ZapisSuboru {
@@ -33,16 +33,18 @@ public class ZapisSuboru {
             e.printStackTrace();
         }
     }
+
     /**
-     *  Metóda prečíta, vypíše a zapíše do súboru aktuálne skóre
+     * Metóda prečíta, vypíše a zapíše do súboru aktuálne skóre
+     * @param vyhral Dáva informáciu ako skončila hra ( Vyhral X,O alebo Remíza)
      */
     public void zapisStatistiku(int vyhral) {
         switch (vyhral) {
             case 5 -> this.x++;
             case 10 -> this.y++;
             case 15 -> {
-                this.x--;
-                this.y--;
+                this.x = this.x;
+                this.y = this.y;
             }
         }
 
@@ -50,8 +52,8 @@ public class ZapisSuboru {
             FileWriter statsW = new FileWriter("statistiky.txt");
             statsW.write("\n\nAktuálna hra (pokial sa nezavrie aplikácia) : \n");
             statsW.write("Ak vyhráš dostaneš +1b ak prehráš body ostávajú, ale ak nastane remíza dostanete obaja -1b) : \n");
-            statsW.write("Tvoje výhry: " + this.x );
-            statsW.write("\nProtihráčové výhry: " + this.y );
+            statsW.write("Výhry X: " + this.x );
+            statsW.write("\n Výhry O: " + this.y );
             statsW.close();
         } catch (IOException e) {
             System.out.println("Nastal niekde problem.");
@@ -61,13 +63,13 @@ public class ZapisSuboru {
     }
 
     /**
-     * Metóda ktorá prečíta všetko zo súboru a vypíše do konzoly
+     *  Metóda ktorá prečíta všetko zo súboru a vypíše do konzoly
      *
-     * int i;
-     * while  ((i = fr.read()) != -1) {
-     * System.out.print((char)i);
-     * }
-     * použite z https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
+     *   int i;
+     *   while  ((i = fr.read()) != -1) {
+     *   System.out.print((char)i);
+     *   }
+     *  použite z https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
      */
     public void vypisZoSuboru() {
         try {

@@ -6,22 +6,18 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-//import java.util.Scanner;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Font;
-//import javax.swing.JComponent;
-//import java.util.Timer;
-//import java.util.TimerTask;
 
 import static java.awt.BorderLayout.NORTH;
 
 /**
- * 24.11.2021 - 9:23
+ * 6.1.2022 - 15:30
  *
- * @author Andrej
+ * @author Andrej Kopas
  */
 public class Frame extends JFrame implements ActionListener {
 
@@ -38,7 +34,7 @@ public class Frame extends JFrame implements ActionListener {
 
     private ZapisSuboru zapis = new ZapisSuboru();
 
-    /**
+    /***
      * Všeobecné nastavenie hernej plochy, headeru, footra, centrovanie, nastavenie textu, farby..
      * Zavolanie metódy prvého ťahu
      */
@@ -90,14 +86,13 @@ public class Frame extends JFrame implements ActionListener {
         this.prvyTah();
     }
 
-    /**
-     *
+    /***
      * pridanie vykonanie akcie resetu po kliknutí na tlačítko reset
      *
      * Interakcia tlačítok
      *
      * Vypisovanie poradia kto je na ťahu
-     *
+     * @param e
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -137,7 +132,7 @@ public class Frame extends JFrame implements ActionListener {
 
     }
 
-    /**
+    /***
      * Metóda, ktorá určuje ktorý hráč pôjde prvý
      */
     public void prvyTah() {
@@ -150,8 +145,9 @@ public class Frame extends JFrame implements ActionListener {
         }
     }
 
-    /**
+    /***
      * V tejto metóde sa kontroluje zhoda tlačítok, či náhodou uloženia znakov X nevyhralo
+     * @return
      */
     public boolean kontrolaX() {
         //X
@@ -230,8 +226,9 @@ public class Frame extends JFrame implements ActionListener {
         return true;
     }
 
-    /**
+    /***
      * V tejto metóde sa kontroluje zhoda tlačítok, či náhodou uloženia znakov O nevyhralo
+     * @return
      */
     public boolean kontrolaO() {
         //O
@@ -310,7 +307,7 @@ public class Frame extends JFrame implements ActionListener {
     }
 
 
-    /**
+    /***
      * v tejto metóde sa kontroluje či nenastala remíza
      */
     public void kontrolaRemizy() {
@@ -325,8 +322,11 @@ public class Frame extends JFrame implements ActionListener {
         }
     }
 
-    /**
+    /***
      * Výpis a nastevenie výherných tlačidiel na zelenú farbu ak vyhralo X
+     * @param a
+     * @param b
+     * @param c
      */
     public void vyhraX(int a, int b, int c) {
         this.vyhral = 5;
@@ -340,8 +340,11 @@ public class Frame extends JFrame implements ActionListener {
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
-    /**
+    /***
      * Výpis a nastevenie výherných tlačidiel na červenú farbu ak vyhralo O
+     * @param a
+     * @param b
+     * @param c
      */
     public void vyhraO(int a, int b, int c) {
         this.vyhral = 10;
@@ -355,8 +358,8 @@ public class Frame extends JFrame implements ActionListener {
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
-    /**
-     *  Metóda ktorá nastaví tlačítka na sivo pokial nastane remíza
+    /***
+     * Metóda ktorá nastaví tlačítka na sivo pokial nastane remíza
      */
     public void remiza() {
         this.vyhral = 15;
@@ -368,7 +371,7 @@ public class Frame extends JFrame implements ActionListener {
         this.zapis.zapisStatistiku(this.vyhral);
     }
 
-    /**
+    /***
      * V tejto metóde sa nastavuje resetovanie tlačítok a nastavenie na novú hru
      */
     public void reset() {
